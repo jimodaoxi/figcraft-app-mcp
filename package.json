@@ -1,0 +1,54 @@
+{
+  "name": "figcraft-app-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local MCP bridge for the FigCraft desktop app (loopback control channel), with a Figma-compatible tool surface.",
+  "keywords": [
+    "figcraft",
+    "mcp",
+    "model-context-protocol",
+    "figma",
+    "design",
+    "automation"
+  ],
+  "license": "GPL-3.0",
+  "author": "wangpengfei",
+  "type": "module",
+  "bin": {
+    "figcraft-app-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.test.json",
+    "test": "vitest run",
+    "test:live": "node scripts/live-test.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "26.2.0",
+    "tsx": "4.23.12",
+    "typescript": "7.0.2",
+    "vitest": "4.1.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimodaoxi/figcraft-app-mcp.git"
+  },
+  "homepage": "https://github.com/jimodaoxi/figcraft-app-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/jimodaoxi/figcraft-app-mcp/issues"
+  }
+}

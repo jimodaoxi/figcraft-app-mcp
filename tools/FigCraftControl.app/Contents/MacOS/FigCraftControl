@@ -1,0 +1,29 @@
+#!/bin/sh
+# Launches the real FigCraft desktop app with the loopback control channel enabled.
+#
+# Port resolution order:
+#   1. $FIGCRAFT_CONTROL_PORT
+#   2. <repo>/figcraft-mcp/.control-port   (read with the shell builtin, no external command)
+#   3. DEFAULT_PORT baked into this script
+#
+# LaunchServices gives GUI apps a minimal PATH, so the port file is read with the
+# `read` builtin instead of `cat`.
+DEFAULT_PORT="7987"
+HERE="$(cd "$(dirname "$0")" && pwd)"
+PORT_FILE="$HERE/../../../../.control-port"
+LOG="$HERE/../../../../figcraft-control.log"
+
+PORT=""
+if [ -n "${FIGCRAFT_CONTROL_PORT:-}" ]; then
+  PORT="$FIGCRAFT_CONTROL_PORT"
+elif [ -f "$PORT_FILE" ]; then
+  IFS= read -r PORT < "$PORT_FILE" || PORT=""
+fi
+if [ -z "$PORT" ]; then
+  PORT="$DEFAULT_PORT"
+fi
+
+{
+  echo "[$(date '+%F %T')] launching FigCraft --control $PORT (PATH=$PATH)"
+} >> "$LOG" 2>> "$LOG"
+exec "/Applications/FigCraft.app/Contents/MacOS/FigCraft" --control "$PORT" "$@" >> "$LOG" 2>&1

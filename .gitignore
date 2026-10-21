@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.npm-cache/
+.control-port
+figcraft-control.log
