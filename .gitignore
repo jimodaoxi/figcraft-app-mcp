@@ -3,3 +3,4 @@ dist/
 .npm-cache/
 .control-port
 figcraft-control.log
+tools/FigCraftControl.app/Contents/_CodeSignature/

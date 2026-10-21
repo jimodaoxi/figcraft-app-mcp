@@ -46,12 +46,16 @@ FigCraft 桌面应用 (--control <port>)
 **A. 包装 App（推荐，已随项目提供）**
 
 ```sh
-open -n /Users/wangpengfei/Documents/codozero/figcraft-mcp/tools/FigCraftControl.app
+cd /path/to/figcraft-app-mcp
+scripts/install-control-app.sh          # 重新签名并设定端口（clone 后先跑一次）
+open -n tools/FigCraftControl.app
 ```
 
 包装 App 会以 `--control <port>` 启动真正的 FigCraft，端口取自
 `$FIGCRAFT_CONTROL_PORT` > `figcraft-mcp/.control-port` > 脚本内默认值 `7987`。
 日志写在 `figcraft-mcp/figcraft-control.log`。
+（从 zip/下载得到的包可能带 quarantine 标记：右键 ▸ 打开，或
+`xattr -dr com.apple.quarantine tools/FigCraftControl.app`。）
 
 **B. 直接用 open 传参**
 
